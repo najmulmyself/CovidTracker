@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -18,11 +20,77 @@ class _WorldStatState extends State<WorldStat> {
         child: Column(
           children: [
             PieChart(
-              dataMap: {"Ban": 15, "Eng": 20, "Math": 40},
+              legendOptions: LegendOptions(
+                legendPosition: LegendPosition.left,
+                legendTextStyle: TextStyle(fontSize: 20, wordSpacing: 20.0),
+              ),
+              chartLegendSpacing: 80,
+              dataMap: {
+                "Total": 15,
+                "Recover": 20,
+                "Death": 40,
+              },
+              colorList: [
+                Colors.blue,
+                Colors.green,
+                Colors.redAccent,
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Card(
+              child: Column(
+                children: [
+                  ReUsableRow(
+                    title: "Total",
+                    value: 200,
+                  ),
+                  ReUsableRow(
+                    title: "Total",
+                    value: 200,
+                  ),
+                  ReUsableRow(
+                    title: "Total",
+                    value: 200,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       )),
+    );
+  }
+}
+
+class ReUsableRow extends StatelessWidget {
+  String? title;
+  int? value;
+
+  ReUsableRow({this.title, this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title!),
+              Text(
+                value.toString(),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Divider()
+        ],
+      ),
     );
   }
 }
