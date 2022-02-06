@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:covid_tracker/screen/world_stat.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -14,6 +17,20 @@ class _SplashScreenState extends State<SplashScreen>
       AnimationController(duration: const Duration(seconds: 5), vsync: this)
         ..repeat();
   @override
+  void initState() {
+    super.initState();
+    Timer(
+      const Duration(seconds: 5),
+      () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WorldStat(),
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -21,16 +38,24 @@ class _SplashScreenState extends State<SplashScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text("Fuck the way we can"),
             AnimatedBuilder(
               animation: _controller,
               child: Container(
+                // color: Colors.red,
                 height: 200,
                 width: 200,
-                child: Image.asset("covid.png"),
+                child: Center(
+                  child: Image(
+                    image: NetworkImage("assets/images/covid.png"),
+                  ),
+                ),
               ),
               builder: (BuildContext context, Widget? child) {
                 return Transform.rotate(
-                    angle: _controller.value * 2.0 * math.pi);
+                  angle: _controller.value * 2.0 * math.pi,
+                  child: child,
+                );
               },
             ),
           ],
