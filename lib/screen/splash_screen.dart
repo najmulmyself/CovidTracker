@@ -31,34 +31,53 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Fuck the way we can"),
-            AnimatedBuilder(
-              animation: _controller,
-              child: Container(
-                // color: Colors.red,
-                height: 200,
-                width: 200,
-                child: Center(
-                  child: Image(
-                    image: NetworkImage("assets/images/covid.png"),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _controller,
+                child: Container(
+                  // color: Colors.red,
+                  height: 200,
+                  width: 200,
+                  child: Center(
+                    child: Image(
+                      image: AssetImage("assets/images/covid.png"),
+                    ),
                   ),
                 ),
+                builder: (BuildContext context, Widget? child) {
+                  return Transform.rotate(
+                    angle: _controller.value * 2.0 * math.pi,
+                    child: child,
+                  );
+                },
               ),
-              builder: (BuildContext context, Widget? child) {
-                return Transform.rotate(
-                  angle: _controller.value * 2.0 * math.pi,
-                  child: child,
-                );
-              },
-            ),
-          ],
+              SizedBox(
+                height: 50,
+              ),
+              Text(
+                "Covid Tracker",
+                style: TextStyle(
+                  color: Color(0xffffffff),
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

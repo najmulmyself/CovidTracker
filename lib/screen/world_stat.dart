@@ -10,8 +10,12 @@ class WorldStat extends StatefulWidget {
 class _WorldStatState extends State<WorldStat> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("hello"),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: Text("Hello World"),
+        ),
+      ),
     );
   }
 }
