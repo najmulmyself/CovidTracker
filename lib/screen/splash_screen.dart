@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
       () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => WorldStat(),
+          builder: (context) => const WorldStat(),
         ),
       ),
     );
@@ -32,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.dispose();
   }
@@ -52,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
                   // color: Colors.red,
                   height: 200,
                   width: 200,
-                  child: Center(
+                  child: const Center(
                     child: Image(
                       image: AssetImage("assets/images/covid.png"),
                     ),
@@ -65,10 +64,10 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Text(
+              const Text(
                 "Covid Tracker",
                 style: TextStyle(
                   color: Color(0xffffffff),
