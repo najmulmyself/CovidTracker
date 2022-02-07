@@ -11,6 +11,12 @@ class WorldStat extends StatefulWidget {
 }
 
 class _WorldStatState extends State<WorldStat> {
+  // Future getStats() async {
+  //   final response =
+  //       await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
+  //   var test = response.body;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +74,9 @@ class _WorldStatState extends State<WorldStat> {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Center(child: Text('Track Countries')),
+                child: Center(
+                  child: Text('Track Countries'),
+                ),
               ),
             )
           ],
