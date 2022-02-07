@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+import 'package:covid_tracker/services/stat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -19,6 +20,8 @@ class _WorldStatState extends State<WorldStat> {
 
   @override
   Widget build(BuildContext context) {
+    StatServices newWorldStat = StatServices();
+    print(newWorldStat);
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -76,6 +79,7 @@ class _WorldStatState extends State<WorldStat> {
                 ),
                 child: Center(
                   child: Text('Track Countries'),
+                  
                 ),
               ),
             )
