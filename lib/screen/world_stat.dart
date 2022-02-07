@@ -1,8 +1,11 @@
 // import 'dart:html';
 
+import 'dart:convert';
+
 import 'package:covid_tracker/services/stat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:http/http.dart' as http;
 
 class WorldStat extends StatefulWidget {
   const WorldStat({Key? key}) : super(key: key);
@@ -12,16 +15,38 @@ class WorldStat extends StatefulWidget {
 }
 
 class _WorldStatState extends State<WorldStat> {
-  // Future getStats() async {
-  //   final response =
-  //       await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
-  //   var test = response.body;
-  // }
+//   Future getStats() async {
+//     final response =
+//         await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
+//     var test = response.body;
+
+// }
+
+  // class StatServices {
+  Future getStats() async {
+    final response =
+        await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      print(data);
+    } else {
+      throw Exception("Error");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getStats();
+    // print("hello");
+  }
+// }
 
   @override
   Widget build(BuildContext context) {
-    StatServices newWorldStat = StatServices();
-    print(newWorldStat);
+    // StatServices newWorldStat = StatServices();
+    // print(newWorldStat);
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -79,7 +104,6 @@ class _WorldStatState extends State<WorldStat> {
                 ),
                 child: Center(
                   child: Text('Track Countries'),
-                  
                 ),
               ),
             )

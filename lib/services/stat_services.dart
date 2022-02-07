@@ -11,6 +11,7 @@ class StatServices {
       var data = jsonDecode(response.body);
       return data;
     } else {
-      throw Exception("Error");    }
+      throw Exception("Error");
+    }
   }
 }
