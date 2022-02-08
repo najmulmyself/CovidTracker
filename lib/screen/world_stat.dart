@@ -27,15 +27,20 @@ class _WorldStatState extends State<WorldStat> {
 
   @override
   Widget build(BuildContext context) {
-    // StatServices newWorldStat = StatServices();
-    // print(newWorldStat);
+    StatServices newWorldStat = StatServices();
     return Scaffold(
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            PieChart(
+            FutureBuilder(
+              future: newWorldStat.getStats(),
+              initialData: InitialData,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Column(
+                  children: [
+                    PieChart(
               legendOptions: LegendOptions(
                 legendPosition: LegendPosition.left,
                 legendTextStyle: TextStyle(fontSize: 20, wordSpacing: 20.0),
@@ -73,6 +78,11 @@ class _WorldStatState extends State<WorldStat> {
                 ],
               ),
             ),
+                  ],
+                );
+              },
+            ),
+            
             SizedBox(
               height: 15,
             ),
