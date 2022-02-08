@@ -23,25 +23,7 @@ class _WorldStatState extends State<WorldStat> {
 // }
 
   // class StatServices {
-  Future getStats() async {
-    final response =
-        await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      print(data);
-    } else {
-      throw Exception("Error");
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this.getStats();
-    // print("hello");
-  }
-// }
+ 
 
   @override
   Widget build(BuildContext context) {
