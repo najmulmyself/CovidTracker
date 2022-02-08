@@ -36,7 +36,7 @@ class _WorldStatState extends State<WorldStat> {
           children: [
             FutureBuilder(
               future: newWorldStat.getStats(),
-              initialData: InitialData,
+              // initialData: InitialData,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 return Column(
                   children: [
@@ -47,7 +47,7 @@ class _WorldStatState extends State<WorldStat> {
               ),
               chartLegendSpacing: 80,
               dataMap: {
-                "Total": 15,
+                "Total": newWorldStat.getStats(), // cant read the data which i retured in the stat_services
                 "Recover": 20,
                 "Death": 40,
               },
