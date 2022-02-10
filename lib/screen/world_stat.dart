@@ -23,7 +23,6 @@ class _WorldStatState extends State<WorldStat> {
 // }
 
   // class StatServices {
- 
 
   @override
   Widget build(BuildContext context) {
@@ -41,48 +40,49 @@ class _WorldStatState extends State<WorldStat> {
                 return Column(
                   children: [
                     PieChart(
-              legendOptions: LegendOptions(
-                legendPosition: LegendPosition.left,
-                legendTextStyle: TextStyle(fontSize: 20, wordSpacing: 20.0),
-              ),
-              chartLegendSpacing: 80,
-              dataMap: {
-                "Total": newWorldStat.getStats(), // cant read the data which i retured in the stat_services
-                "Recover": 20,
-                "Death": 40,
-              },
-              colorList: [
-                Colors.blue,
-                Colors.green,
-                Colors.redAccent,
-              ],
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Card(
-              child: Column(
-                children: [
-                  ReUsableRow(
-                    title: "Total",
-                    value: 200,
-                  ),
-                  ReUsableRow(
-                    title: "Total",
-                    value: 200,
-                  ),
-                  ReUsableRow(
-                    title: "Total",
-                    value: 200,
-                  ),
-                ],
-              ),
-            ),
+                      legendOptions: LegendOptions(
+                        legendPosition: LegendPosition.left,
+                        legendTextStyle:
+                            TextStyle(fontSize: 20, wordSpacing: 20.0),
+                      ),
+                      chartLegendSpacing: 80,
+                      dataMap: {
+                        "Total":
+                            20, // cant read the data which i retured in the stat_services
+                        "Recover": 20,
+                        "Death": 40,
+                      },
+                      colorList: [
+                        Colors.blue,
+                        Colors.green,
+                        Colors.redAccent,
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Card(
+                      child: Column(
+                        children: [
+                          ReUsableRow(
+                            title: "Total",
+                            value: 200,
+                          ),
+                          ReUsableRow(
+                            title: "Total",
+                            value: 200,
+                          ),
+                          ReUsableRow(
+                            title: "Total",
+                            value: 200,
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 );
               },
             ),
-            
             SizedBox(
               height: 15,
             ),
