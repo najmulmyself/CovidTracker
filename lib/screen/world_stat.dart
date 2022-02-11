@@ -40,7 +40,7 @@ class _WorldStatState extends State<WorldStat> {
                 return Column(
                   children: [
                     PieChart(
-                      legendOptions: LegendOptions(
+                      legendOptions: const LegendOptions(
                         legendPosition: LegendPosition.left,
                         legendTextStyle:
                             TextStyle(fontSize: 20, wordSpacing: 20.0),
@@ -98,7 +98,7 @@ class _WorldStatState extends State<WorldStat> {
                   child: Text('Track Countries'),
                 ),
               ),
-            )
+            ),
           ],
         ),
       )),

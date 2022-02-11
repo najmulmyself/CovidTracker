@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       ),
       title: 'Material App',
       home: SplashScreen(),
-      
     );
   }
 }
+
+// need to check more
