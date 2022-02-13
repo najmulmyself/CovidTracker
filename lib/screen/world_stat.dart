@@ -47,9 +47,8 @@ class _WorldStatState extends State<WorldStat> {
                       ),
                       chartLegendSpacing: 80,
                       dataMap: {
-                        "Total":
-                            20, // cant read the data which i retured in the stat_services
-                        "Recover": 20,
+                        "Total": 20,
+                        "Recoverd": 20,
                         "Death": 40,
                       },
                       colorList: [
@@ -94,13 +93,13 @@ class _WorldStatState extends State<WorldStat> {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const  Center(
+                child: const Center(
                   child: Text('Track Countries'),
                 ),
               ),
             ),
           ],
-        ), 
+        ),
       )),
     );
   }

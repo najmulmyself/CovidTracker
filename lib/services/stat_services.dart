@@ -10,10 +10,10 @@ class StatServices {
         await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
 
     if (response.statusCode == 200) {
+      
       var data = jsonDecode(response.body);
       return ApiData.fromJson(data);
 
-      return data;
     } else {
       throw Exception("Error");
     }
