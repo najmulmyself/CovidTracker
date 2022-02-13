@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'splash_screen.dart';
 
@@ -35,88 +35,92 @@ class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
     StatServices newWorldStat = StatServices();
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          children: [
-            FutureBuilder(
-              future: newWorldStat.getStats(),
-              // initialData: InitialData,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  return Expanded(
-                    child: SpinKitFadingCircle(
-                      color: Colors.white,
-                      size: 50,
-                      controller: _controller,
-                    ),
-                  );
-                }
-                return Column(
-                  children: [
-                    PieChart(
-                      legendOptions: const LegendOptions(
-                        legendPosition: LegendPosition.left,
-                        legendTextStyle:
-                            TextStyle(fontSize: 20, wordSpacing: 20.0),
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            children: [
+              FutureBuilder(
+                future: newWorldStat.getStats(),
+                // initialData: InitialData,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) {
+                    return Expanded(
+                      child: SpinKitFadingCircle(
+                        color: Colors.white,
+                        size: 50,
+                        controller: _controller,
                       ),
-                      chartLegendSpacing: 80,
-                      dataMap: {
-                        "Total": double.parse(snapshot.data.cases.toString()),
-                        "Recoverd":
-                            double.parse(snapshot.data.recovered.toString()),
-                        "Death": double.parse(snapshot.data.deaths.toString()),
-                      },
-                      colorList: const [
-                        Colors.blue,
-                        Colors.green,
-                        Colors.redAccent,
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        PieChart(
+                          legendOptions: const LegendOptions(
+                            legendPosition: LegendPosition.left,
+                            legendTextStyle:
+                                TextStyle(fontSize: 20, wordSpacing: 20.0),
+                          ),
+                          chartLegendSpacing: 80,
+                          dataMap: {
+                            "Total":
+                                double.parse(snapshot.data.cases.toString()),
+                            "Recoverd": double.parse(
+                                snapshot.data.recovered.toString()),
+                            "Death":
+                                double.parse(snapshot.data.deaths.toString()),
+                          },
+                          colorList: const [
+                            Colors.blue,
+                            Colors.green,
+                            Colors.redAccent,
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Card(
+                          child: Column(
+                            children: [
+                              ReUsableRow(
+                                title: "Total",
+                                value: 200,
+                              ),
+                              ReUsableRow(
+                                title: "Total",
+                                value: 200,
+                              ),
+                              ReUsableRow(
+                                title: "Total",
+                                value: 200,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Card(
-                      child: Column(
-                        children: [
-                          ReUsableRow(
-                            title: "Total",
-                            value: 200,
-                          ),
-                          ReUsableRow(
-                            title: "Total",
-                            value: 200,
-                          ),
-                          ReUsableRow(
-                            title: "Total",
-                            value: 200,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                  child: Text('Track Countries'),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Text('Track Countries'),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
