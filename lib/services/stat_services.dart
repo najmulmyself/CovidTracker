@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'api_data.dart';
 
+import 'package:covid_tracker/services/api_data.dart';
 import 'package:http/http.dart' as http;
 
 class StatServices {
@@ -9,6 +11,8 @@ class StatServices {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
+      return ApiData.fromJson(data);
+
       return data;
     } else {
       throw Exception("Error");
