@@ -1,4 +1,6 @@
-// import 'dart:html';
+import 'dart:html';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'splash_screen.dart';
 
 import 'dart:convert';
 
@@ -15,7 +17,7 @@ class WorldStat extends StatefulWidget {
   _WorldStatState createState() => _WorldStatState();
 }
 
-class _WorldStatState extends State<WorldStat> {
+class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
 //   Future getStats() async {
 //     final response =
 //         await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
@@ -24,6 +26,9 @@ class _WorldStatState extends State<WorldStat> {
 // }
 
   // class StatServices {
+
+  late final AnimationController _controller =
+      AnimationController(duration: Duration(seconds: 5), vsync: this);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,15 @@ class _WorldStatState extends State<WorldStat> {
               future: newWorldStat.getStats(),
               // initialData: InitialData,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: SpinKitFadingCircle(
+                      color: Colors.white,
+                      size: 50,
+                      controller: _controller,
+                    ),
+                  );
+                }
                 return Column(
                   children: [
                     PieChart(
