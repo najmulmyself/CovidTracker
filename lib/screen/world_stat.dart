@@ -37,87 +37,107 @@ class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              FutureBuilder(
-                future: newWorldStat.getStats(),
-                // initialData: InitialData,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (!snapshot.hasData) {
-                    return Expanded(
-                      child: SpinKitFadingCircle(
-                        color: Colors.white,
-                        size: 50,
-                        controller: _controller,
-                      ),
-                    );
-                  } else {
-                    return Column(
-                      children: [
-                        PieChart(
-                          legendOptions: const LegendOptions(
-                            legendPosition: LegendPosition.left,
-                            legendTextStyle:
-                                TextStyle(fontSize: 20, wordSpacing: 20.0),
-                          ),
-                          chartLegendSpacing: 80,
-                          dataMap: {
-                            "Total":
-                                double.parse(snapshot.data.cases.toString()),
-                            "Recoverd": double.parse(
-                                snapshot.data.recovered.toString()),
-                            "Death":
-                                double.parse(snapshot.data.deaths.toString()),
-                          },
-                          colorList: const [
-                            Colors.blue,
-                            Colors.green,
-                            Colors.redAccent,
-                          ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                FutureBuilder(
+                  future: newWorldStat.getStats(),
+                  // initialData: InitialData,
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (!snapshot.hasData) {
+                      return Expanded(
+                        child: SpinKitFadingCircle(
+                          color: Colors.white,
+                          size: 50,
+                          controller: _controller,
                         ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Card(
-                          child: Column(
-                            children: [
-                              ReUsableRow(
-                                title: "Total",
-                                value: 200,
-                              ),
-                              ReUsableRow(
-                                title: "Total",
-                                value: 200,
-                              ),
-                              ReUsableRow(
-                                title: "Total",
-                                value: 200,
-                              ),
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                          PieChart(
+                            chartValuesOptions: ChartValuesOptions(
+                                showChartValuesInPercentage: true),
+                            legendOptions: const LegendOptions(
+                              legendPosition: LegendPosition.left,
+                              legendTextStyle:
+                                  TextStyle(fontSize: 20, wordSpacing: 20.0),
+                            ),
+                            chartLegendSpacing: 80,
+                            dataMap: {
+                              "Total":
+                                  double.parse(snapshot.data.cases.toString()),
+                              "Recoverd": double.parse(
+                                  snapshot.data.recovered.toString()),
+                              "Death":
+                                  double.parse(snapshot.data.deaths.toString()),
+                            },
+                            colorList: const [
+                              Colors.blue,
+                              Colors.green,
+                              Colors.redAccent,
                             ],
                           ),
-                        ),
-                      ],
-                    );
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Center(
-                    child: Text('Track Countries'),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Card(
+                            child: Column(
+                              children: [
+                                ReUsableRow(
+                                  title: "Cases",
+                                  value: snapshot.data.recovered,
+                                ),
+                                ReUsableRow(
+                                  title: "Today Cases",
+                                  value: snapshot.data.todayCases,
+                                ),
+                                ReUsableRow(
+                                  title: "Tests",
+                                  value: snapshot.data.tests,
+                                ),
+                                ReUsableRow(
+                                  title: "Recovered",
+                                  value: snapshot.data.recovered,
+                                ),
+                                ReUsableRow(
+                                  title: "Today Recoverd",
+                                  value: snapshot.data.todayRecovered,
+                                ),
+                                ReUsableRow(
+                                  title: "Deaths",
+                                  value: snapshot.data.deaths,
+                                ),
+                                ReUsableRow(
+                                  title: "Deaths",
+                                  value: snapshot.data.deaths,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text('Track Countries'),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
