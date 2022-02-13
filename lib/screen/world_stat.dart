@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:covid_tracker/services/api_data.dart';
 import 'package:covid_tracker/services/stat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -47,17 +48,18 @@ class _WorldStatState extends State<WorldStat> {
                       ),
                       chartLegendSpacing: 80,
                       dataMap: {
-                        "Total": 20,
-                        "Recoverd": 20,
-                        "Death": 40,
+                        "Total": double.parse(snapshot.data.cases.toString()),
+                        "Recoverd":
+                            double.parse(snapshot.data.recovered.toString()),
+                        "Death": double.parse(snapshot.data.deaths.toString()),
                       },
-                      colorList: [
+                      colorList: const [
                         Colors.blue,
                         Colors.green,
                         Colors.redAccent,
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Card(
@@ -82,7 +84,7 @@ class _WorldStatState extends State<WorldStat> {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -126,7 +128,7 @@ class ReUsableRow extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Divider()
