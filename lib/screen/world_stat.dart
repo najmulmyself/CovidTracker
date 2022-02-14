@@ -108,10 +108,6 @@ class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
                                   title: "Deaths",
                                   value: snapshot.data.deaths,
                                 ),
-                                ReUsableRow(
-                                  title: "Deaths",
-                                  value: snapshot.data.deaths,
-                                ),
                               ],
                             ),
                           ),
