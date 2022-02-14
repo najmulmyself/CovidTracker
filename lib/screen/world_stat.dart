@@ -1,4 +1,5 @@
 // import 'dart:html';
+import 'package:covid_tracker/screen/country_list.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'splash_screen.dart';
 
@@ -36,7 +37,7 @@ class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding:  EdgeInsets.all(18.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -120,15 +121,23 @@ class _WorldStatState extends State<WorldStat> with TickerProviderStateMixin {
                   height: 15,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10),
+                  padding:  EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) =>const  CountriesData();
                     ),
-                    child: const Center(
-                      child: Text('Track Countries'),
+                  ),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Center(
+                        child: Text('Track Countries'),
+                      ),
                     ),
                   ),
                 ),
